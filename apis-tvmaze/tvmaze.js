@@ -18,33 +18,16 @@ async function getShowsByTerm(term) {
   let shows = []
   // ADD: Remove placeholder & make request to TVMaze search shows API.
   const res = await axios.get("http://api.tvmaze.com/search/shows/", {params:{q: term}})
-    // let showsRunner = res.data.show;
-    // const {name, summary, image} = showsRunner;
-    // console.log(showsRunner)
+  // use the query parameters to get the object from the API
       for (let showData of res.data){
           let showsRunner = showData.show;
+          // loop and store the date object for res
           const {id,name, summary, image} = showsRunner;
+          // object destructure and pull these items out
+          // you can use map also 
           shows.push({id, name, summary, image})
+          // push into and array and this will allow you to iterate through it 
       }
-//   return [
-//     {
-//       id: 1767,
-//       name: "The Bletchley Circle",
-//       summary:
-//         `<p><b>The Bletchley Circle</b> follows the journey of four ordinary
-//            women with extraordinary skills that helped to end World War II.</p>
-//          <p>Set in 1952, Susan, Millie, Lucy and Jean have returned to their
-//            normal lives, modestly setting aside the part they played in
-//            producing crucial intelligence, which helped the Allies to victory
-//            and shortened the war. When Susan discovers a hidden code behind an
-//            unsolved murder she is met by skepticism from the police. She
-//            quickly realises she can only begin to crack the murders and bring
-//            the culprit to justice with her former friends.</p>`,
-//       image:
-//         "http://static.tvmaze.com/uploads/images/medium_portrait/147/369403.jpg"
-//     }
-//   ];
-console.log(shows)
  return shows
 }
 
@@ -77,21 +60,14 @@ function populateShows(shows) {
     $showsList.append($show);
   } 
 
-  const $showData = $("div.Show.col-md-12.col-lg-6.mb-4")
-  console.log($showData);
-  const showId = $showData.data("show-id")
-  console.log(showId);
+  // const $showData = $("div.Show.col-md-12.col-lg-6.mb-4")
+  // console.log($showData);
+  // const showId = $showData.data("show-id")
+  // console.log(showId);
   const $epButton = $("button.btn.btn-outline-light.btn-sm.Show-getEpisodes") 
 
 $epButton.on("click", handleClick)
-    //   evt.preventDefault()
-    //   let idShow = evt.target.id;
-    //   console.log(idShow);
-    //   $episodesArea.show()
-    //   const resultEpis = await getEpisodesOfShow(idShow)
-    //   populateEpisodes(resultEpis)
-    //   // use the element of data-show-id 
-    // })
+
   console.log($epButton);
   // if a handle click event happended here and an id was sent over
 }
